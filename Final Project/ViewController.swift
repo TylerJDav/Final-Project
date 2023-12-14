@@ -9,11 +9,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var databaseManager: DatabaseManager?
+    var itemsDBManager: ItemsDBManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        databaseManager = DatabaseManager()
+        do {
+            try itemsDBManager = ItemsDBManager()
+        } catch {
+            print("Error opening database: \(error)")
+        }
     }
     
     private func showAlert(message: String) {
@@ -24,6 +28,6 @@ class ViewController: UIViewController {
         }
     
     deinit {
-        databaseManager = nil
+        itemsDBManager = nil
     }
 }
