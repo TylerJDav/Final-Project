@@ -163,7 +163,7 @@ class ShoppingListManager {
     private func executeSQLStatement(_ sql: String) throws {
         guard sqlite3_exec(db, sql, nil, nil, nil) == SQLITE_OK else {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
-            throw DatabaseError.statementStepFailed("Error executing SQL statement: \(errmsg)")
+            throw DatabaseError.statementStepFailed("Error executing SQL statement: \(errmsg), SQL: \(sql)")
         }
     }
 }

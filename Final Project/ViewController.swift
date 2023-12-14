@@ -13,11 +13,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            try itemsDBManager = ItemsDBManager()
-        } catch {
-            print("Error opening database: \(error)")
-        }
+        itemsDBManager = ItemsDBManager()
     }
     
     private func showAlert(message: String) {

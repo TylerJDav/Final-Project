@@ -16,6 +16,7 @@
 		81789F3D2B29D310002F6CBB /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F3C2B29D310002F6CBB /* DatabaseManager.swift */; };
 		81789F3F2B2AD821002F6CBB /* itemsDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F3E2B2AD821002F6CBB /* itemsDBManager.swift */; };
 		81789F412B2ADAFD002F6CBB /* ShoppingListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F402B2ADAFD002F6CBB /* ShoppingListManager.swift */; };
+		81789F432B2AE157002F6CBB /* RecipeAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F422B2AE157002F6CBB /* RecipeAPIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		81789F3C2B29D310002F6CBB /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		81789F3E2B2AD821002F6CBB /* itemsDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemsDBManager.swift; sourceTree = "<group>"; };
 		81789F402B2ADAFD002F6CBB /* ShoppingListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListManager.swift; sourceTree = "<group>"; };
+		81789F422B2AE157002F6CBB /* RecipeAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPIManager.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				81789F3C2B29D310002F6CBB /* DatabaseManager.swift */,
 				81789F3E2B2AD821002F6CBB /* itemsDBManager.swift */,
 				81789F402B2ADAFD002F6CBB /* ShoppingListManager.swift */,
+				81789F422B2AE157002F6CBB /* RecipeAPIManager.swift */,
 			);
 			path = "Final Project";
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				81789F412B2ADAFD002F6CBB /* ShoppingListManager.swift in Sources */,
 				81789F3F2B2AD821002F6CBB /* itemsDBManager.swift in Sources */,
 				81789F2B2B29C178002F6CBB /* SceneDelegate.swift in Sources */,
+				81789F432B2AE157002F6CBB /* RecipeAPIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
