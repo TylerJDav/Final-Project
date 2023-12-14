@@ -8,12 +8,22 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var databaseManager: DatabaseManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        databaseManager = DatabaseManager()
     }
-
-
+    
+    private func showAlert(message: String) {
+            let alertController = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        }
+    
+    deinit {
+        databaseManager = nil
+    }
 }
-
