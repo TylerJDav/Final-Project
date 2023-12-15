@@ -14,11 +14,11 @@ class ItemsDBManager {
     // MARK: - Create Item
 
     func addItem(name: String, brand: String, calories: Int, protein: Int, carbs: Int, fat: Int, servings: Int) throws {
-        let queryString = "INSERT INTO FoodItems (FoodName, FoodBrand, Calories, ProteinGrams, CarbGrams, FatGrams, Servings) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        let queryString = "INSERT INTO pantryitems (FoodName, FoodBrand, Calories, ProteinGrams, CarbGrams, FatGrams, Servings) VALUES (?, ?, ?, ?, ?, ?, ?)"
 
         var stmt: OpaquePointer?
 
-        guard sqlite3_prepare_v2(db, queryString, -1, &stmt, nil) == SQLITE_OK else {
+        guard sqlite3_prepare_v2(db, queryString, -1, &stmt, nil) != SQLITE_OK else {
             throw DatabaseError.statementPrepareFailed("Error preparing insert statement")
         }
 
@@ -45,7 +45,7 @@ class ItemsDBManager {
     // MARK: - Read Item
 
     func readItem(withId id: Int) -> (name: String, brand: String, calories: Int, protein: Int, carbs: Int, fat: Int, servings: Int)? {
-        let queryString = "SELECT * FROM FoodItems WHERE ID = ?"
+        let queryString = "SELECT * FROM pantryitems WHERE ID = ?"
 
         var stmt: OpaquePointer?
 
@@ -78,11 +78,42 @@ class ItemsDBManager {
 
         return (name, brand, calories, protein, carbs, fat, servings)
     }
+    
+    func readAllItems() throws -> [(id: Int, name: String, brand: String, calories: Int, protein: Int, carbs: Int, fat: Int, servings: Int)] {
+        let queryString = "SELECT * FROM pantryitems"
+
+        var stmt: OpaquePointer?
+
+        if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing insert: \(errmsg)")
+        }
+
+        var items: [(id: Int, name: String, brand: String, calories: Int, protein: Int, carbs: Int, fat: Int, servings: Int)] = []
+
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            let id = Int(sqlite3_column_int(stmt, 0))
+            let name = String(cString: sqlite3_column_text(stmt, 1))
+            let brand = String(cString: sqlite3_column_text(stmt, 2))
+            let calories = Int(sqlite3_column_int(stmt, 3))
+            let protein = Int(sqlite3_column_int(stmt, 4))
+            let carbs = Int(sqlite3_column_int(stmt, 5))
+            let fat = Int(sqlite3_column_int(stmt, 6))
+            let servings = Int(sqlite3_column_int(stmt, 7))
+
+            let item = (id: id, name: name, brand: brand, calories: calories, protein: protein, carbs: carbs, fat: fat, servings: servings)
+            print(item)
+            items.append(item)
+        }
+
+        return items
+    }
+
 
     // MARK: - Update Item
 
     func updateItem(id: Int, name: String, brand: String, calories: Int, protein: Int, carbs: Int, fat: Int, servings: Int) throws {
-        let queryString = "UPDATE FoodItems SET FoodName = ?, FoodBrand = ?, Calories = ?, ProteinGrams = ?, CarbGrams = ?, FatGrams = ?, Servings = ? WHERE ID = ?"
+        let queryString = "UPDATE pantryitems SET FoodName = ?, FoodBrand = ?, Calories = ?, ProteinGrams = ?, CarbGrams = ?, FatGrams = ?, Servings = ? WHERE ID = ?"
 
         var stmt: OpaquePointer?
 
@@ -114,7 +145,7 @@ class ItemsDBManager {
     // MARK: - Delete Item
     
     func deleteItem(withId id: Int) throws {
-            let queryString = "DELETE FROM FoodItems WHERE ID = ?"
+            let queryString = "DELETE FROM pantryitems WHERE ID = ?"
 
             var stmt: OpaquePointer?
 
@@ -139,7 +170,7 @@ class ItemsDBManager {
     // MARK: - Clear Database
     
     func clearDatabase() throws {
-            let clearTableString = "DELETE FROM FoodItems"
+            let clearTableString = "DELETE FROM pantryitems"
 
             if sqlite3_exec(db, clearTableString, nil, nil, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
@@ -150,7 +181,7 @@ class ItemsDBManager {
     // MARK: - Reset Database
     
     func resetDatabase() throws {
-            let dropTableString = "DROP TABLE IF EXISTS FoodItems"
+            let dropTableString = "DROP TABLE IF EXISTS pantryitems"
             let createTableString = """
                 CREATE TABLE IF NOT EXISTS FoodItems (
                     ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -164,7 +195,7 @@ class ItemsDBManager {
                 );
             """
             let populateTableString = """
-                INSERT INTO FoodItems
+                INSERT INTO pantryitems
                 (FoodName, FoodBrand, Calories, ProteinGrams, CarbGrams, FatGrams, Servings)
                 VALUES
                 ("Banana","Dole",27,1,30,0,0),

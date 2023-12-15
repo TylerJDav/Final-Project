@@ -17,6 +17,8 @@
 		81789F3F2B2AD821002F6CBB /* itemsDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F3E2B2AD821002F6CBB /* itemsDBManager.swift */; };
 		81789F412B2ADAFD002F6CBB /* ShoppingListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F402B2ADAFD002F6CBB /* ShoppingListManager.swift */; };
 		81789F432B2AE157002F6CBB /* RecipeAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F422B2AE157002F6CBB /* RecipeAPIManager.swift */; };
+		81789F452B2B1706002F6CBB /* PantryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F442B2B1705002F6CBB /* PantryViewController.swift */; };
+		81789F472B2B3EAA002F6CBB /* groceryitems.db in Resources */ = {isa = PBXBuildFile; fileRef = 81789F462B2B3EAA002F6CBB /* groceryitems.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		81789F3E2B2AD821002F6CBB /* itemsDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemsDBManager.swift; sourceTree = "<group>"; };
 		81789F402B2ADAFD002F6CBB /* ShoppingListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListManager.swift; sourceTree = "<group>"; };
 		81789F422B2AE157002F6CBB /* RecipeAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPIManager.swift; sourceTree = SOURCE_ROOT; };
+		81789F442B2B1705002F6CBB /* PantryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PantryViewController.swift; path = ../PantryViewController.swift; sourceTree = "<group>"; };
+		81789F462B2B3EAA002F6CBB /* groceryitems.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = groceryitems.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +52,7 @@
 		81789F1C2B29C178002F6CBB = {
 			isa = PBXGroup;
 			children = (
+				81789F462B2B3EAA002F6CBB /* groceryitems.db */,
 				81789F272B29C178002F6CBB /* Final Project */,
 				81789F262B29C178002F6CBB /* Products */,
 			);
@@ -67,6 +72,7 @@
 				81789F282B29C178002F6CBB /* AppDelegate.swift */,
 				81789F2A2B29C178002F6CBB /* SceneDelegate.swift */,
 				81789F2C2B29C178002F6CBB /* ViewController.swift */,
+				81789F442B2B1705002F6CBB /* PantryViewController.swift */,
 				81789F2E2B29C178002F6CBB /* Main.storyboard */,
 				81789F312B29C17A002F6CBB /* Assets.xcassets */,
 				81789F332B29C17A002F6CBB /* LaunchScreen.storyboard */,
@@ -137,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81789F472B2B3EAA002F6CBB /* groceryitems.db in Resources */,
 				81789F352B29C17A002F6CBB /* LaunchScreen.storyboard in Resources */,
 				81789F322B29C17A002F6CBB /* Assets.xcassets in Resources */,
 				81789F302B29C178002F6CBB /* Main.storyboard in Resources */,
@@ -152,6 +159,7 @@
 			files = (
 				81789F3D2B29D310002F6CBB /* DatabaseManager.swift in Sources */,
 				81789F2D2B29C178002F6CBB /* ViewController.swift in Sources */,
+				81789F452B2B1706002F6CBB /* PantryViewController.swift in Sources */,
 				81789F292B29C178002F6CBB /* AppDelegate.swift in Sources */,
 				81789F412B2ADAFD002F6CBB /* ShoppingListManager.swift in Sources */,
 				81789F3F2B2AD821002F6CBB /* itemsDBManager.swift in Sources */,

@@ -21,15 +21,17 @@ class DatabaseManager {
     var db: OpaquePointer?
 
     private init() throws {
-        guard let databasePath = Bundle.main.path(forResource: "groceryitems", ofType: "sqlite") else {
+        guard let databasePath = Bundle.main.path(forResource: "groceryitems", ofType: "db") else {
+            print("Error: Unable to find the database file in the project.")
             throw DatabaseError.databaseOpenFailed("Unable to find the database file in the project.")
         }
-
+        
         if sqlite3_open(databasePath, &db) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("Error opening database: \(errmsg)")
             throw DatabaseError.databaseOpenFailed("Error opening database: \(errmsg)")
         }
-    }
+            }
 
     deinit {
         sqlite3_close(db)

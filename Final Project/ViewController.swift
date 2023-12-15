@@ -9,11 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var itemsDBManager: ItemsDBManager?
+    var databaseManager: DatabaseManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemsDBManager = ItemsDBManager()
+        databaseManager = DatabaseManager.shared
     }
     
     private func showAlert(message: String) {
@@ -22,8 +22,4 @@ class ViewController: UIViewController {
             alertController.addAction(okAction)
             present(alertController, animated: true, completion: nil)
         }
-    
-    deinit {
-        itemsDBManager = nil
-    }
 }
