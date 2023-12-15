@@ -18,7 +18,7 @@ class ItemsDBManager {
 
         var stmt: OpaquePointer?
 
-        guard sqlite3_prepare_v2(db, queryString, -1, &stmt, nil) != SQLITE_OK else {
+        guard sqlite3_prepare_v2(db, queryString, -1, &stmt, nil) == SQLITE_OK else {
             throw DatabaseError.statementPrepareFailed("Error preparing insert statement")
         }
 
@@ -45,7 +45,7 @@ class ItemsDBManager {
     // MARK: - Read Item
 
     func readItem(withId id: Int) -> (name: String, brand: String, calories: Int, protein: Int, carbs: Int, fat: Int, servings: Int)? {
-        let queryString = "SELECT * FROM pantryitems WHERE ID = ?"
+        let queryString = "SELECT * FROM pantryitems WHERE FoodID = ?"
 
         var stmt: OpaquePointer?
 
@@ -113,10 +113,10 @@ class ItemsDBManager {
     // MARK: - Update Item
 
     func updateItem(id: Int, name: String, brand: String, calories: Int, protein: Int, carbs: Int, fat: Int, servings: Int) throws {
-        let queryString = "UPDATE pantryitems SET FoodName = ?, FoodBrand = ?, Calories = ?, ProteinGrams = ?, CarbGrams = ?, FatGrams = ?, Servings = ? WHERE ID = ?"
+        let queryString = "UPDATE pantryitems SET FoodName = ?, FoodBrand = ?, Calories = ?, ProteinGrams = ?, CarbGrams = ?, FatGrams = ?, Servings = ? WHERE FoodID = ?"
 
         var stmt: OpaquePointer?
-
+        
         guard sqlite3_prepare_v2(db, queryString, -1, &stmt, nil) == SQLITE_OK else {
             throw DatabaseError.statementPrepareFailed("Error preparing update statement")
         }
@@ -145,7 +145,7 @@ class ItemsDBManager {
     // MARK: - Delete Item
     
     func deleteItem(withId id: Int) throws {
-            let queryString = "DELETE FROM pantryitems WHERE ID = ?"
+            let queryString = "DELETE FROM pantryitems WHERE FoodID = ?"
 
             var stmt: OpaquePointer?
 
@@ -184,7 +184,7 @@ class ItemsDBManager {
             let dropTableString = "DROP TABLE IF EXISTS pantryitems"
             let createTableString = """
                 CREATE TABLE IF NOT EXISTS FoodItems (
-                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                    FoodID INTEGER PRIMARY KEY AUTOINCREMENT,
                     FoodName TEXT NOT NULL,
                     FoodBrand TEXT,
                     Calories INTEGER,

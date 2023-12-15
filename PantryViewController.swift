@@ -46,37 +46,75 @@ class PantryViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Handle row selection (Edit or Remove)
-        // You can implement actions to edit or remove the selected pantry item
+        let selectedItem = pantryItems[indexPath.row]
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "EditPantryItemSegue", let addToPantryVC = segue.destination as? AddToPantryViewController {
+                // Check if sender is an item (for edit) or nil (for add)
+                if let selectedItem = sender as? (id: Int, name: String, brand: String, calories: Int, protein: Int, carbs: Int, fat: Int, servings: Int) {
+                    addToPantryVC.editMode = true
+                    addToPantryVC.editedItem = selectedItem
+                } else {
+                    addToPantryVC.editMode = false
+                }
+            }
+        }
 
     // Add your actions for buttons (Edit, Remove, Add)
 
     @IBAction func editButtonTapped(_ sender: Any) {
+        guard let selectedIndexPath = tableView.indexPathForSelectedRow else {
+            return
+        }
+
+        // Perform the segue manually with the selected item
+        performSegue(withIdentifier: "EditPantryItemSegue", sender: pantryItems[selectedIndexPath.row])
     }
     
 
     @IBAction func deleteButtonTapped(_ sender: Any) {
+        // Check if a row is selected
+        guard let selectedIndexPath = tableView.indexPathForSelectedRow else {
+            return
+        }
+
+        do {
+            // Use the itemsDBManager to read all pantry items from the database
+            if let itemsDBManager = itemsDBManager {
+                // Get the ID of the selected item
+                let selectedID = pantryItems[selectedIndexPath.row].id
+
+                // Delete the item
+                try itemsDBManager.deleteItem(withId: selectedID)
+
+                // Refresh the table view after deletion
+                fetchPantryItems()
+            }
+        } catch {
+            print("Error deleting pantry item: \(error)")
+        }
     }
     
 
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "YourSegueIdentifier", sender: self)
+        performSegue(withIdentifier: "EditPantryItemSegue", sender: nil)
     }
 
 
     // Implement a method to fetch pantry items from the database
     func fetchPantryItems() {
-            do {
-                // Use the itemsDBManager to read all pantry items from the database
-                if let itemsDBManager = itemsDBManager {
-                    let pantryItemsFromDB = try itemsDBManager.readAllItems()
-                    self.pantryItems = pantryItemsFromDB
-                    tableView.reloadData()
-                }
-            } catch {
-                print("Error fetching pantry items: \(error)")
+        do {
+            // Use the itemsDBManager to read all pantry items from the database
+            if let itemsDBManager = itemsDBManager {
+                let pantryItemsFromDB = try itemsDBManager.readAllItems()
+                self.pantryItems = pantryItemsFromDB
+                tableView.reloadData()
             }
+        } catch {
+            print("Error fetching pantry items: \(error)")
         }
+    }
 }
 
 
