@@ -108,6 +108,38 @@ class ItemsDBManager {
 
         return items
     }
+    
+    func getRandomPantryItem() -> (id: Int, name: String, brand: String, calories: Int, protein: Int, carbs: Int, fat: Int, servings: Int)? {
+        let queryString = "SELECT * FROM pantryitems ORDER BY RANDOM() LIMIT 1"
+
+        var stmt: OpaquePointer?
+
+        guard sqlite3_prepare_v2(db, queryString, -1, &stmt, nil) == SQLITE_OK else {
+            print("Error preparing read statement")
+            return nil
+        }
+
+        defer {
+            sqlite3_finalize(stmt)
+        }
+
+        guard sqlite3_step(stmt) == SQLITE_ROW else {
+            print("No items found in the pantry")
+            return nil
+        }
+
+        let id = Int(sqlite3_column_int(stmt, 0))
+        let name = String(cString: sqlite3_column_text(stmt, 1))
+        let brand = String(cString: sqlite3_column_text(stmt, 2))
+        let calories = Int(sqlite3_column_int(stmt, 3))
+        let protein = Int(sqlite3_column_int(stmt, 4))
+        let carbs = Int(sqlite3_column_int(stmt, 5))
+        let fat = Int(sqlite3_column_int(stmt, 6))
+        let servings = Int(sqlite3_column_int(stmt, 7))
+
+        return (id: id, name: name, brand: brand, calories: calories, protein: protein, carbs: carbs, fat: fat, servings: servings)
+    }
+
 
 
     // MARK: - Update Item

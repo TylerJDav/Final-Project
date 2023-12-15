@@ -53,6 +53,7 @@ class APIManager {
 
     private func makeURL(with keywords: String) -> URL? {
         let urlString = "\(baseURL)?type=public&q=\(keywords)&app_id=\(appID)&app_key=\(appKey)&mealType=\(mealType)"
+        print(urlString)
         return URL(string: urlString)
     }
 }

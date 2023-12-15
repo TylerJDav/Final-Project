@@ -20,6 +20,7 @@
 		81789F452B2B1706002F6CBB /* PantryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F442B2B1705002F6CBB /* PantryViewController.swift */; };
 		81789F472B2B3EAA002F6CBB /* groceryitems.db in Resources */ = {isa = PBXBuildFile; fileRef = 81789F462B2B3EAA002F6CBB /* groceryitems.db */; };
 		81789F492B2C07DB002F6CBB /* AddToPantryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F482B2C07DB002F6CBB /* AddToPantryViewController.swift */; };
+		81789F4B2B2C27E2002F6CBB /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81789F4A2B2C27E2002F6CBB /* RecipeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		81789F442B2B1705002F6CBB /* PantryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PantryViewController.swift; path = ../PantryViewController.swift; sourceTree = "<group>"; };
 		81789F462B2B3EAA002F6CBB /* groceryitems.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = groceryitems.db; sourceTree = "<group>"; };
 		81789F482B2C07DB002F6CBB /* AddToPantryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToPantryViewController.swift; sourceTree = SOURCE_ROOT; };
+		81789F4A2B2C27E2002F6CBB /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = SOURCE_ROOT; };
+		81789F4E2B2C2E82002F6CBB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +57,7 @@
 		81789F1C2B29C178002F6CBB = {
 			isa = PBXGroup;
 			children = (
+				81789F4E2B2C2E82002F6CBB /* README.md */,
 				81789F462B2B3EAA002F6CBB /* groceryitems.db */,
 				81789F272B29C178002F6CBB /* Final Project */,
 				81789F262B29C178002F6CBB /* Products */,
@@ -76,6 +80,7 @@
 				81789F2C2B29C178002F6CBB /* ViewController.swift */,
 				81789F442B2B1705002F6CBB /* PantryViewController.swift */,
 				81789F482B2C07DB002F6CBB /* AddToPantryViewController.swift */,
+				81789F4A2B2C27E2002F6CBB /* RecipeViewController.swift */,
 				81789F2E2B29C178002F6CBB /* Main.storyboard */,
 				81789F312B29C17A002F6CBB /* Assets.xcassets */,
 				81789F332B29C17A002F6CBB /* LaunchScreen.storyboard */,
@@ -164,6 +169,7 @@
 				81789F2D2B29C178002F6CBB /* ViewController.swift in Sources */,
 				81789F452B2B1706002F6CBB /* PantryViewController.swift in Sources */,
 				81789F292B29C178002F6CBB /* AppDelegate.swift in Sources */,
+				81789F4B2B2C27E2002F6CBB /* RecipeViewController.swift in Sources */,
 				81789F412B2ADAFD002F6CBB /* ShoppingListManager.swift in Sources */,
 				81789F3F2B2AD821002F6CBB /* itemsDBManager.swift in Sources */,
 				81789F492B2C07DB002F6CBB /* AddToPantryViewController.swift in Sources */,
